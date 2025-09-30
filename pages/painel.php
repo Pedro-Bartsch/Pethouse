@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Projeto S.A</title>
+  <title>Pet House</title>
 
   <?php require_once __DIR__ . '/../components/templates/header.php'; ?>
 

@@ -29,7 +29,7 @@ $(document).ready(function () {
           $("#registerForm")[0].reset();
 
           setTimeout(() => {
-            window.location.href = "/projeto-sa/login.php";
+            window.location.href = "/Pethouse/login.php";
           }, 2000);
         } else {
           mostrarMensagem(response.message || "Erro desconhecido.", false);
