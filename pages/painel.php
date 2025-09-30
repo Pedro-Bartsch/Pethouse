@@ -191,13 +191,79 @@ aria-expanded="false" aria-controls="movimentacoes">
   </nav> 
 </div>
 <!-- Conteúdo principal -->
-<div id="main">
+<div id="main" class ="container mt-5 justify-content">
   <div class="text-center mb-4"> 
   <h1 class="display-5">Olá, <?php echo $_SESSION["nm_nome"]; ?>! <i class="fa-solid fa-shield-dog"></i></h1> 
   <p class="lead">Seja bem-vindo(a) ao painel da <strong>PetHouse</strong>.</p>
   <p class="text-muted">Você está logado como <strong><?= ucfirst($_SESSION['tipo_usuario']) ?></strong>.</p>
   </div>
+
+  <!-- Cards Dashboard -->
+   <div class="row g-4 justify-content text-center">
+    <!-- Clientes -->
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm border-0 p-3">
+        <i class="fa-solid fa-users fa-2x text-primary mb-2"></i>
+        <h5>Clientes</h5>
+        <p class="display-6 fw-bold">x</p>
+      </div>
+    </div>
+    <!-- Vendedores -->
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm border-0 p-3">
+        <i class="fa-solid fa-user-tie fa-2x text-primary mb-2"></i>
+        <h5>Vendedores</h5>
+        <p class="display-6 fw-bold">y</p>
+      </div>
+    </div>
+    <!-- Produtos -->
+    <div class="col-md-3 mb-3">
+      <div class="card shadow-sm border-0 p-3">  
+        <i class="fa-solid fa-box fa-2x text-warning mb-2"></i>
+        <h5>Produtos</h5>
+        <p class="display-6 fw-bold">z</p>
+      </div>
+   </div>
+   <!-- Vendas -->
+   <div class="col-md-3 mb-3">
+      <div class="card shadow-sm border-0 p-3">
+        <i class="fa-solid fa-cart-shopping fa-2x text-danger mb-2"></i>
+        <h5>Vendas</h5>
+        <p class="display-6 fw-bold">*</p>
+      </div>
+   </div>
 </div>
+  
+<!-- Gráfico -->
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-8">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-4">Resumo das Vendas</h5>
+          <canvas id="chartVendas"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  const ctx = document.getElementById('chartVendas').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+      datasets: [{
+        label: 'Vendas',
+        data: [5, 12, 8, 20, 15, 25],
+        borderColor: '#0d6efd',
+        tension: 0.4,
+        fill: true,
+        backgroundColor: 'rgba(13,110,253,0.2)'
+      }]
+    }
+  });
+</script>
+
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
