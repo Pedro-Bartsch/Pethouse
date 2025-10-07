@@ -7,4 +7,4 @@ require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/../config/conexao.php';
 ?>
 
-<script src="<?= BASE_URL?>components/js/config.js.php"></script>
+<script src="<?= BASE_URL?>components/js/config_js.php"></script>
