@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="components/js/config.js.php"></script>
+    <script src="components/js/config_js.php"></script>
     <script src="components/js/login-ajax.js"></script>
   </head>
   <body>
