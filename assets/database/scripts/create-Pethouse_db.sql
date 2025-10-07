@@ -1,3 +1,65 @@
+CREATE DATABASE Pethouse_db;
+
+USE Pethouse_db;
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nm_nome VARCHAR(100) NOT NULL,
+    nm_login VARCHAR(50) NOT NULL UNIQUE,
+    ds_email VARCHAR(100) NOT NULL UNIQUE,
+    ds_password VARCHAR(255) NOT NULL,
+    tipo_usuario ENUM ('admin', 'vendedor') NOT NULL DEFAULT 'vendedor',
+    foto_perfil VARCHAR(255),
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tb_clientes (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    endereco VARCHAR(200) NOT NULL,
+    telefone VARCHAR (20) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    estado_civil CHAR(1) NOT NULL DEFAULT 'S' COMMENT 'C=Casado, S=Solteiro',
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tb_produto(
+	cod_produto INT(8) NOT NULL,
+    nm_produto VARCHAR (100) NOT NULL,
+    ds_produto VARCHAR (200) NOT NULL,
+    quantidade SMALLINT NOT NULL,
+    nr_preco DECIMAL (10,2) NOT NULL,
+    tipo_embalagem ENUM ("caixa", "frasco", "pacote", "garrafa"),
+    data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    CONSTRAINT pk_produto PRIMARY KEY tb_produto(cod_produto)
+);
+
+CREATE TABLE tb_vendedor(
+	cod_vendedor INT AUTO_INCREMENT PRIMARY KEY,
+	nm_nome VARCHAR (100) NOT NULL, 
+	nr_celular VARCHAR (20) NOT NULL UNIQUE,
+	ds_email VARCHAR(100) NOT NULL UNIQUE,
+	data_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE tb_vendas(
+
+	id_venda INT PRIMARY KEY AUTO_INCREMENT,
+	qnt_itens INT NOT NULL,
+	vlr_total DECIMAL (8,2),
+	id_cliente INT NOT NULL,
+	id_vendedor INT NOT NULL,
+	id_produto INT NOT NULL,
+	status_venda ENUM ("em andamento", "cancelada", "finalizada"),
+	data_venda TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+	CONSTRAINT pk_vendas_clientes FOREIGN KEY (id_cliente) REFERENCES tb_clientes (id_cliente),
+	CONSTRAINT pk_vendas_vendedores FOREIGN KEY (id_vendedor) REFERENCES tb_vendedor (cod_vendedor),
+	CONSTRAINT pk_vendas_produtos FOREIGN KEY (id_produto) REFERENCES tb_produto (cod_produto)
+);
+
 -- Arquivo de Inserts
 
 -- INSERIR USUARIO ADMIN
@@ -13,7 +75,7 @@ INSERT INTO tb_clientes (nome, endereco, telefone, email, estado_civil, data_cad
 ('Rogério dos Santos', 'Travessa dos Hamsters, 101', '(41) 98456-7890', 'rogerio.senai@email.com', 'C', NOW()),
 ('Ricardo Gomes', 'Alameda dos Peixes, 222', '(51) 97321-6543', 'ricardo.gomes@email.com', 'C', NOW());
 
--- INSERIR PRODUTOS (com códigos realistas de 8 dígitos)
+-- INSERIR PRODUTOS 
 INSERT INTO tb_produto (cod_produto, nm_produto, ds_produto, quantidade, nr_preco, tipo_embalagem, data_cadastro) VALUES
 (10012035, 'Ração para Cachorro', 'Ração balanceada para cães adultos', 100, 120.00, 'pacote', NOW()),
 (10023579, 'Areia para Gato', 'Areia sanitária perfumada para gatos', 200, 30.50, 'caixa', NOW()),
