@@ -7,13 +7,14 @@ body {
 #sidebar {
   background-color: #212529;
   color: #fff;
-  width: 160px;
+  width: 200px;
   height: 100vh;
   position: fixed;
-  top: 0px;
+  top: 0;
   left: 0;
   overflow-y: auto;
   padding-top: 20px;
+  transition: all 0.3s ease;
 }
 
 #sidebar .nav-link {
@@ -60,22 +61,58 @@ body {
   margin-left: 160px; /* <- deixa espaço para o menu lateral */
   width: calc(100% - 160px); /* <- barra não ocupa toda a largura */
   z-index: 1040;
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Conteúdo principal */
 #main {
   margin-left: 160px;
-  padding: 2rem;
+  padding: 3rem 2rem;
   position: relative;
-  top: 30px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Centraliza o conteudo */
+#main > .container {
+  max-width: 1100px;
+  width: 100%;
+}
+/* Cards do dashboard */
+#main .card {
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+#main .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#main .card h5 {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+#main .card p {
+  color: #0d6efd;
+  font-size: 1.8rem;
+}
+
+/* Responsividade */
 @media (max-width: 991.98px) {
   #sidebar {
     position: fixed;
     top: 56px;
-    left: -160px;
-    transition: left 0.3s;
+    left: -200px;
+    transition: left 0.3s ease;
+    width: 200px;
   }
 
   #sidebar.show {
@@ -84,9 +121,11 @@ body {
 
   .navbar {
     margin-left: 0;
+    width: 100%;
   }
 
   #main {
     margin-left: 0;
+    padding: 2rem 1rem;
   }
 }

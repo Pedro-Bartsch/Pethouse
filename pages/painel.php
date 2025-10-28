@@ -276,9 +276,9 @@ aria-expanded="false" aria-controls="movimentacoes">
     if (toggleButton && sidebar) {
       toggleButton.addEventListener('click', function () {
         sidebar.classList.toggle('show');
-      })
+      });
     }
-  })
+  });
 
   // toggleButton.addEventListener('click', () => {
   //   sidebar.classList.toggle('show');
