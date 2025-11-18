@@ -26,9 +26,9 @@ body {
 }
 
 /* ======================
-   LOGIN
+   LOGIN E REGISTER
 ====================== */
-.login-container {
+.login_register-container {
   max-width: 400px; /* largura máxima */
   margin: 5% auto; /* centraliza vertical e horizontal */
   padding: 2rem;
@@ -37,7 +37,7 @@ body {
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
 }
 
-.login-container input {
+.login_register-container input {
   width: 100%;
   padding: 0.5rem 0.75rem;
   margin-bottom: 1rem;
@@ -47,14 +47,14 @@ body {
   background-color: #fff;
 }
 
-.login-container input:focus {
+.login_register-container input:focus {
   border-color: #0d6efd;
   background-color: #e9ecef;
   outline: none;
   color: #212529;
 }
 
-.login-container button {
+.login_register-container button {
   width: 100%;
   padding: 0.5rem;
   margin-top: 10px;
@@ -67,7 +67,7 @@ body {
   transition: 0.3s;
 }
 
-.login-container button:hover {
+.login_register-container button:hover {
   background-color: #0b5ed7;
 }
 

@@ -13,7 +13,7 @@
     
   </head>
   <body>
-    <div class="login-container">
+    <div class="login_register-container">
       <h2>Autenticação de usuários</h2>
       <form id="loginForm" method="POST">
         <label for="nm_login">Login</label>

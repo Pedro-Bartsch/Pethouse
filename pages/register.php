@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="../css/style.css" />
     <?php require_once __DIR__ . '/../components/templates/header.php';?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel ="stylesheet" href="css/bootstrap.min.css" />
 
     <script src="<?= BASE_URL?>components/js/register-ajax.js"></script>
   </head>
   <body>
-    <div class="container">
+    <div class="login_register-container">
       <h2>Cadastro de Usuário</h2>
       <form id="registerForm" method="POST">
         <label for="nm_nome">Nome completo</label>
