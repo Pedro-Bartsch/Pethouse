@@ -1,26 +1,26 @@
+/* Layout */
 body {
   margin: 0;
   padding: 0;
+  background-color: #f8f9fa;
 }
 
 /* Sidebar */
 #sidebar {
   background-color: #212529;
-  color: #fff;
   width: 200px;
   height: 100vh;
   position: fixed;
-  top: 0;
-  left: 0;
-  overflow-y: auto;
+  color: #fff;
   padding-top: 20px;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
 }
 
 #sidebar .nav-link {
   color: #fff;
   padding: 10px 15px;
   font-size: 0.95rem;
+  transition: 0.2s;
 }
 
 #sidebar .nav-link:hover {
@@ -28,91 +28,64 @@ body {
 }
 
 #sidebar .submenu {
-  padding-left: 30px;
+  padding-left: 25px;
   font-size: 0.9rem;
 }
 
-#sidebar > div.text-center {
+#sidebar > .text-center {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 10px 15px;
   gap: 6px;
+  padding: 10px 15px;
   white-space: nowrap;
-  overflow: hidden;
 }
 
 #sidebar i.fa-paw {
   font-size: 1.2rem;
-  margin: 0;
-  flex-shrink: 0;
 }
 
-#sidebar a.home {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
-}
-
+/* Navbar */
 .navbar {
-  margin-left: 160px; /* <- deixa espaço para o menu lateral */
-  width: calc(100% - 160px); /* <- barra não ocupa toda a largura */
-  z-index: 1040;
-  background-color: #ffffff !important;
+  margin-left: 200px;
+  width: calc(100% - 200px);
+  background: #fff !important;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1040;
 }
 
-/* Conteúdo principal */
+/* Main container */
 #main {
-  margin-left: 160px;
+  margin-left: 200px;
   padding: 3rem 2rem;
-  position: relative;
-  background-color: #f8f9fa;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Centraliza o conteudo */
 #main > .container {
   max-width: 1100px;
   width: 100%;
 }
-/* Cards do dashboard */
+
+/* Dashboard cards */
 #main .card {
-  background-color: #fff;
-  border: none;
+  background: #fff;
   border-radius: 10px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: 0.2s;
 }
+
 #main .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-#main .card h5 {
-  margin-top: 10px;
-  font-weight: 600;
-  color: #333;
-}
-
-#main .card p {
-  color: #0d6efd;
-  font-size: 1.8rem;
-}
-
-/* Responsividade */
-@media (max-width: 991.98px) {
+/* Responsivo */
+@media (max-width: 992px) {
   #sidebar {
-    position: fixed;
-    top: 56px;
     left: -200px;
-    transition: left 0.3s ease;
-    width: 200px;
+    top: 56px;
+    position: fixed;
   }
 
   #sidebar.show {

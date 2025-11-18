@@ -1,55 +1,42 @@
-$(document).ready(function () {
-  console.log("JavaScript carregado");
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registerForm");
+  const msg = document.getElementById("message");
 
-  $("#registerForm").on("submit", function (e) {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log("Formulário interceptado");
 
-    const senha = $("#ds_password").val();
-    const confirma = $("#ds_password_confirm").val();
+    const f = new FormData(form);
+    const senha = f.get("ds_password");
+    const confirma = f.get("ds_password_confirm");
 
     if (senha !== confirma) {
-      mostrarMensagem("As senhas não coincidem.", false);
+      showMsg("As senhas não coincidem.", false);
       return;
     }
 
-    $.ajax({
-      url: "../components/functions/valida_register.php",
-      type: "POST",
-      data: $(this).serialize(),
-      dataType: "json",
-      success: function (response) {
-        console.log("Resposta recebida:", response);
+    try {
+      const response = await ajax(
+        "../components/functions/valida_register.php",
+        Object.fromEntries(f.entries())
+      );
 
-        if (response.success) {
-          mostrarMensagem(
-            "Cadastro realizado com sucesso! Redirecionando para login...",
-            true
-          );
-          $("#registerForm")[0].reset();
+      showMsg(response.message, response.success);
 
-          setTimeout(() => {
-            window.location.href = "/Pethouse/login.php";
-          }, 2000);
-        } else {
-          mostrarMensagem(response.message || "Erro desconhecido.", false);
-        }
-      },
-      error: function (xhr, status, error) {
-        console.error("Erro AJAX:", xhr.responseText);
-        mostrarMensagem("Erro ao processar o cadastro.", false);
-      },
-    });
+      if (response.success) {
+        form.reset();
+        setTimeout(() => {
+          window.location.href = "/Pethouse/login.php";
+        }, 2000);
+      }
+    } catch {
+      showMsg("Erro ao processar cadastro.", false);
+    }
   });
 
-  function mostrarMensagem(texto, sucesso) {
-    const $msg = $("#message");
-    $msg
-      .removeClass("success error")
-      .addClass(sucesso ? "success" : "error")
-      .text(texto)
-      .fadeIn()
-      .delay(3000)
-      .fadeOut();
+  function showMsg(texto, ok) {
+    msg.className = ok ? "success" : "error";
+    msg.textContent = texto;
+    msg.style.display = "block";
+    setTimeout(() => (msg.style.display = "none"), 3000);
   }
 });

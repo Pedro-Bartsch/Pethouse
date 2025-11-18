@@ -42,6 +42,7 @@ try {
 
             echo json_encode([
                 'success' => true,
+                'message' => 'Login realizado com sucesso.',
                 'redirect' => BASE_URL.'pages/painel.php'
             ]);
        

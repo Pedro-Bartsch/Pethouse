@@ -8,7 +8,7 @@
   <?php require_once __DIR__ . '/../components/templates/header.php'; ?>
 
   <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="<?= BASE_URL ?>css/bootstrap.min.css">
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <!-- Custom CSS -->
@@ -57,9 +57,11 @@
 
 <!-- Menu Lateral -->
 <div id="sidebar">
-    <div class="text-center fw-bold py-3">
-    <i class="fa-solid fa-paw"></i> <a class="home submenu" href="#" data-page="painel">PetHouse</a>
-    </div>
+  <div class="text-center fw-bold py-3">
+    <i class="fa-solid fa-paw me-2"></i>
+    <a href="painel.php" id="link-home" class="home">PetHouse</a>
+  </div>
+
   <nav class="nav flex-column">
 
     <?php if(isset($_SESSION['tipo_usuario']) && $_SESSION['tipo_usuario'] === 'admin'): ?>
@@ -191,60 +193,63 @@ aria-expanded="false" aria-controls="movimentacoes">
   </nav> 
 </div>
 <!-- Conteúdo principal -->
-<div id="main" class ="container mt-5 justify-content">
-  <div class="text-center mb-4"> 
-  <h1 class="display-5">Olá, <?php echo $_SESSION["nm_nome"]; ?>! <i class="fa-solid fa-shield-dog"></i></h1> 
-  <p class="lead">Seja bem-vindo(a) ao painel da <strong>PetHouse</strong>.</p>
-  <p class="text-muted">Você está logado como <strong><?= ucfirst($_SESSION['tipo_usuario']) ?></strong>.</p>
-  </div>
+<div id="main" class="container mt-5 justify-content">
 
-  <!-- Cards Dashboard -->
-   <div class="row g-4 justify-content text-center">
-    <!-- Clientes -->
-    <div class="col-md-3 mb-3">
-      <div class="card shadow-sm border-0 p-3">
-        <i class="fa-solid fa-users fa-2x text-primary mb-2"></i>
-        <h5>Clientes</h5>
-        <p class="display-6 fw-bold">x</p>
-      </div>
-    </div>
-    <!-- Vendedores -->
-    <div class="col-md-3 mb-3">
-      <div class="card shadow-sm border-0 p-3">
-        <i class="fa-solid fa-user-tie fa-2x text-primary mb-2"></i>
-        <h5>Vendedores</h5>
-        <p class="display-6 fw-bold">y</p>
-      </div>
-    </div>
-    <!-- Produtos -->
-    <div class="col-md-3 mb-3">
-      <div class="card shadow-sm border-0 p-3">  
-        <i class="fa-solid fa-box fa-2x text-warning mb-2"></i>
-        <h5>Produtos</h5>
-        <p class="display-6 fw-bold">z</p>
-      </div>
-   </div>
-   <!-- Vendas -->
-   <div class="col-md-3 mb-3">
-      <div class="card shadow-sm border-0 p-3">
-        <i class="fa-solid fa-cart-shopping fa-2x text-danger mb-2"></i>
-        <h5>Vendas</h5>
-        <p class="display-6 fw-bold">*</p>
-      </div>
-   </div>
-</div>
-  
-<!-- Gráfico -->
-  <div class="row justify-content-center mt-5">
-    <div class="col-lg-8">
-      <div class="card shadow-lg border-0 rounded-4">
-        <div class="card-body">
-          <h5 class="card-title text-center mb-4">Resumo das Vendas</h5>
-          <canvas id="chartVendas"></canvas>
+    <!-- Aqui o conteúdo será trocado dinamicamente -->
+    <div id="pagina">
+        <div class="text-center mb-4"> 
+            <h1 class="display-5">Olá, <?php echo $_SESSION["nm_nome"]; ?>! <i class="fa-solid fa-shield-dog"></i></h1> 
+            <p class="lead">Seja bem-vindo(a) ao painel da <strong>PetHouse</strong>.</p>
+            <p class="text-muted">Você está logado como <strong><?= ucfirst($_SESSION['tipo_usuario']) ?></strong>.</p>
         </div>
-      </div>
+
+        <!-- Conteúdo inicial opcional (dashboard padrão) -->
+        <div class="row g-4 justify-content text-center">
+          <div class="col-md-3">
+            <div class="card shadow-sm border-0 p-3">
+              <i class="fa-solid fa-users fa-2x text-primary mb-2"></i>
+              <h5>Clientes</h5>
+              <p class="display-6 fw-bold">x</p>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card shadow-sm border-0 p-3">
+              <i class="fa-solid fa-user-tie fa-2x text-primary mb-2"></i>
+              <h5>Vendedores</h5>
+              <p class="display-6 fw-bold">y</p>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card shadow-sm border-0 p-3">
+              <i class="fa-solid fa-box fa-2x text-warning mb-2"></i>
+              <h5>Produtos</h5>
+              <p class="display-6 fw-bold">z</p>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="card shadow-sm border-0 p-3">
+              <i class="fa-solid fa-cart-shopping fa-2x text-danger mb-2"></i>
+              <h5>Vendas</h5>
+              <p class="display-6 fw-bold">*</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-4">
+              <div class="card-body">
+                <h5 class="card-title text-center mb-4">Resumo das Vendas</h5>
+                <canvas id="chartVendas"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
-  </div>
+
 </div>
 <script>
   const ctx = document.getElementById('chartVendas').getContext('2d');
@@ -269,16 +274,14 @@ aria-expanded="false" aria-controls="movimentacoes">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoader', function () {
-    const toggleButton = document.getElementById('menu-toggle');
-    const sidebar = document.getElementById('sidebar');
-    
-    if (toggleButton && sidebar) {
-      toggleButton.addEventListener('click', function () {
-        sidebar.classList.toggle('show');
-      });
-    }
+  document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("menu-toggle");
+  const sidebar = document.getElementById("sidebar");
+
+  toggle.addEventListener("click", () => {
+    sidebar.classList.toggle("show");
   });
+});
 
   // toggleButton.addEventListener('click', () => {
   //   sidebar.classList.toggle('show');
